@@ -66,4 +66,5 @@
 - Une fois votre projet soumis, vous devrez réaliser un minimum de 5 revues qui vous seront attribuées automatiquement via le site du cours.
 
 
-Cas d'utilisation :
+## Cas d'utilisation
+- lancer le jeu
