@@ -80,7 +80,7 @@
 - s'identifier
 - prendre un bonus
 - afficher le leaderboard
-- (modifier son profil)
 - voir les commandes
-- (supprimer son profil)
 - vérifier que username existe pas encore
+- (modifier son profil)
+- (supprimer son profil)
