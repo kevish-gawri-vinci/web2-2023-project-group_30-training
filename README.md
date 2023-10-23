@@ -69,3 +69,18 @@
 ## Cas d'utilisation
 - lancer le jeu (high)
 - enregistrer le score
+- lancer le jeu 
+- enregistrer le score
+- sauter 
+- avancer
+- reculer
+- quitter la partie
+- relancer la partie
+- perdre la partie
+- s'identifier
+- prendre un bonus
+- afficher le leaderboard
+- (modifier son profil)
+- voir les commandes
+- (supprimer son profil)
+- vérifier que username existe pas encore
