@@ -67,4 +67,5 @@
 
 
 ## Cas d'utilisation
-- lancer le jeu
+- lancer le jeu (high)
+- enregistrer le score
