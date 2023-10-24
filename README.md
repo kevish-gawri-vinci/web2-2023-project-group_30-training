@@ -78,6 +78,7 @@
 - relancer la partie (high)
 - perdre la partie (high)
 - s'identifier (medium)
+- création des assets graphiques (medium)
 - afficher le leaderboard (medium)
 - voir les commandes (low)
 - vérifier que username existe pas encore (low)
