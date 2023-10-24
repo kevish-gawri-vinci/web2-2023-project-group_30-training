@@ -68,19 +68,19 @@
 
 ## Cas d'utilisation
 - lancer le jeu (high)
-- enregistrer le score
-- lancer le jeu 
-- enregistrer le score
-- sauter 
-- avancer
-- reculer
-- quitter la partie
-- relancer la partie
-- perdre la partie
-- s'identifier
-- prendre un bonus
-- afficher le leaderboard
-- voir les commandes
-- vérifier que username existe pas encore
-- (modifier son profil)
-- (supprimer son profil)
+- enregistrer le score (high)
+- lancer le jeu (high)
+- enregistrer le score (high)
+- sauter (high)
+- avancer (high)
+- reculer (high)
+- quitter la partie (high)
+- relancer la partie (high)
+- perdre la partie (high)
+- s'identifier (medium)
+- afficher le leaderboard (medium)
+- voir les commandes (low)
+- vérifier que username existe pas encore (low)
+- prendre un bonus (low)
+- (modifier son profil) (low)
+- (supprimer son profil) (low)
