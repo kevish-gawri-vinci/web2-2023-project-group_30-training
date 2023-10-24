@@ -85,3 +85,4 @@
     - prendre un bonus
     - (modifier son profil)
     - (supprimer son profil)
+    - (créer son profil)
