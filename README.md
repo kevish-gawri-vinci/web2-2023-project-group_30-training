@@ -71,7 +71,7 @@
   - lancer la partie
   - enregistrer le score
   - se déplacer (avancer, reculer, sauter)
-  - quitter la partie
+  - quitter la partie (abandonner)
   - perdre la partie
   - implémentation des assets graphiques
   - créer son compte
