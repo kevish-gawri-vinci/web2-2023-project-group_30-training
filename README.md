@@ -67,18 +67,16 @@
 
 
 ## Cas d'utilisation
-- lancer le jeu (high)
+- high priority
+  - lancer la partie
+  - enregistrer le score
   - lancer le jeu
-- enregistrer le score (high)
-- lancer le jeu (high)
-- enregistrer le score (high)
-- sauter (high)
-- avancer (high)
-- reculer (high)
-- quitter la partie (high)
-- relancer la partie (high)
-- perdre la partie (high)
+  - sauter
+  - avancer/reculer
+  - quitter la partie
+  - perdre la partie
 - s'identifier (medium)
+    - création des assets graphiques
 - création des assets graphiques (medium)
 - afficher le leaderboard (medium)
 - voir les commandes (low)
