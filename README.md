@@ -75,12 +75,14 @@
   - avancer/reculer
   - quitter la partie
   - perdre la partie
-- s'identifier (medium)
+- medium priority
     - création des assets graphiques
-- création des assets graphiques (medium)
-- afficher le leaderboard (medium)
-- voir les commandes (low)
-- vérifier que username existe pas encore (low)
-- prendre un bonus (low)
-- (modifier son profil) (low)
-- (supprimer son profil) (low)
+    - s'identifier
+    - afficher les leaderboards
+- low priority
+    - voir les commandes
+    - voir les règles
+    - vérifier que nom pas encore dans leaderboard
+    - prendre un bonus
+    - (modifier son profil)
+    - (supprimer son profil)
