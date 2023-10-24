@@ -70,7 +70,6 @@
 - high priority
   - lancer la partie
   - enregistrer le score
-  - lancer le jeu
   - sauter
   - avancer/reculer
   - quitter la partie
