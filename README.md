@@ -70,19 +70,17 @@
 - high priority
   - lancer la partie
   - enregistrer le score
-  - sauter
-  - avancer/reculer
+  - se déplacer (avancer, reculer, sauter)
   - quitter la partie
   - perdre la partie
+  - implémentation des assets graphiques
+  - créer son compte
+  - s'identifier
 - medium priority
-    - création des assets graphiques
-    - s'identifier
     - afficher les leaderboards
+    - voir commandes
+    - voir règles
 - low priority
-    - voir les commandes
-    - voir les règles
-    - vérifier que nom pas encore dans leaderboard
     - prendre un bonus
-    - (modifier son profil)
-    - (supprimer son profil)
-    - (créer son profil)
+    - modifier son profil
+    - supprimer son profil
