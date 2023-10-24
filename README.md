@@ -68,7 +68,7 @@
 
 ## Cas d'utilisation
 - lancer le jeu (high)
-      - lancer le jeu
+  - lancer le jeu
 - enregistrer le score (high)
 - lancer le jeu (high)
 - enregistrer le score (high)
