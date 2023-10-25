@@ -84,3 +84,4 @@
     - prendre un bonus
     - modifier son profil
     - supprimer son profil
+    - ajouter des mécaniques (style portal, tuyau dans mario)
