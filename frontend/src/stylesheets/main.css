@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+*, nav{
+    overflow: hidden;
+    background-size: cover;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-weight: 700px;
+    color: white;
+    background-color: green;
+}
+.navbar-brand, #navbarWrapper{
+    color: white;
+}
+
+.navbar-brand{
+    font-size: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#title{
+    font-size: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+}
+
+button{
+    height: 50px;
+    margin: 10px;
+    width: 220px;
+    border-color: #2F5B02;
+    border-bottom: 7px solid #2F5B02;
+    border-right: 7px solid black;
+}
+
+button:active{
+    border: 2px solid #2F5B02;
+}
+
+.menuButtons{
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    width: 260px;
+    font-size: 20px;
+    color:red
+}
+
+#menu .menuButtons a {
+    text-decoration: none;
+    text-decoration-line: none;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+.navbar-toggler-icon{
+    float: right;
+    font-size: 30px;
+}
+

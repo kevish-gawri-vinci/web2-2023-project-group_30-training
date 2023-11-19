@@ -3,21 +3,20 @@ import routes from './routes';
 
 const Router = () => {
   onFrontendLoad();
-  onNavBarClick();
+  onMenuClick();
   onHistoryChange();
 };
 
-function onNavBarClick() {
-  const navbarWrapper = document.querySelector('#navbarWrapper');
+function onMenuClick() {
+  const main = document.querySelector('main');
 
-  navbarWrapper.addEventListener('click', (e) => {
+  main.addEventListener('click', (e) => {
     e.preventDefault();
-    const navBarItemClicked = e.target;
-    const uri = navBarItemClicked?.dataset?.uri;
+    const menuItemClicked = e.target;
+    const uri = menuItemClicked?.dataset?.uri;
     if (uri) {
       const componentToRender = routes[uri];
       if (!componentToRender) throw Error(`The ${uri} ressource does not exist.`);
-
       componentToRender();
       window.history.pushState({}, '', usePathPrefix(uri));
     }
