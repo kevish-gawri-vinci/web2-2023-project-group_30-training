@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 *, nav{
-    overflow: hidden;
+    overflow-x: hidden;
     background-size: cover;
     font-family: 'Pixelify Sans', sans-serif;
-    font-weight: 700px;
+    font-weight: 600px;
     color: white;
     background-color: green;
 }
@@ -29,16 +29,16 @@
     height: 60vh;
 }
 
-button{
+.menuButtons{
     height: 50px;
-    margin: 10px;
+    margin: 7px;
     width: 220px;
     border-color: #2F5B02;
     border-bottom: 7px solid #2F5B02;
     border-right: 7px solid black;
 }
 
-button:active{
+.menuButtons:active{
     border: 2px solid #2F5B02;
 }
 
@@ -62,4 +62,34 @@ button:active{
     float: right;
     font-size: 30px;
 }
+
+#gamePauseButton{
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    background: green;
+    font-size: x-large;
+    border-radius: 40px;
+    overflow: hidden;
+    border: 2px solid black;
+    margin-top: 5px;
+}
+
+#pauseMenu{
+    border: 3px solid black;
+}
+
+#pauseMenuCloseButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: 2px solid black;
+    font-size: x-large;
+    overflow: hidden;
+}
+
+.modal, .modal-fade, .modal-dialog{
+    background-color: transparent;
+}
+
 
