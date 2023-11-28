@@ -120,7 +120,6 @@ const GamePage = () => {
   // Pause the game upon click of pause button
 
   pauseButton.addEventListener('click', () => {
-    console.log('test s')
     game.pause();
   })
 
