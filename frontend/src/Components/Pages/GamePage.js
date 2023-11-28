@@ -8,7 +8,27 @@ let game;
 
 const GamePage = () => {
   const phaserGame = `
-<div id="gamePageDiv">  
+<div id="gamePageDiv">
+  <div class="modal fade" id="rulesAndCommandsDiv">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center justify-content-center">
+          <h3 class="modal-title">Règles</h3>
+        </div>
+
+        <div class="modal-body text-center">
+          <p> tetstuzafeyuzagdyizae </p>
+          <form class="">
+            <input type="checkbox">
+            <label>Ne plus montrer ce message</label>
+          </form>
+        </div>
+        <div class="modal-footer bg-transparent">
+          <button data-bs-dismiss="modal" id="closeRulesButton">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>  
   <div id="gameDiv" class="d-flex justify-content-center my-3">
     <button type="button"  id="gamePauseButton" class="" data-bs-toggle="modal" data-bs-target="#pauseModal"> || </button>
     
@@ -79,11 +99,18 @@ const GamePage = () => {
     //  parent DOM element into which the canvas created by the renderer will be injected.
     parent: 'gameDiv',
   };
+  if (game) game.destroy(true);
+  game = new Phaser.Game(config);
+  game.pause();
 
   // there could be issues when a game was quit (events no longer working)
   // therefore destroy any started game prior to recreate it
-  if (game) game.destroy(true);
-  game = new Phaser.Game(config);
+
+  const closeRulesButton = document.getElementById('closeRulesButton');
+  closeRulesButton.addEventListener('click', () => {
+    game.resume();
+  })
+  
 
 
   // Onclick of the restart button
@@ -139,10 +166,19 @@ const GamePage = () => {
 
   // eslint-disable-next-line no-unused-vars
   const pauseModal = new Modal(document.getElementById('pauseModal'), {
-      keyboard: false,
-      backdrop: false
+    keyboard: false,
+    backdrop: false
   });
 
+  // eslint-disable-next-line no-unused-vars
+  const rulesAndCommandsDiv = new Modal(document.getElementById('rulesAndCommandsDiv'), {
+    show: true, 
+    keyboard: false,
+    backdrop: false
+  });
+
+  rulesAndCommandsDiv.show();
+  
 };
 
 export default GamePage;
