@@ -59,7 +59,8 @@ const GamePage = () => {
 
   const mainWidth = window.innerWidth;
   const pauseButton = document.getElementById('gamePauseButton');
-  const pauseButtonPosition = ((mainWidth - 800) / 2);
+  let pauseButtonPosition = ((mainWidth - 800) / 2);
+  if (pauseButtonPosition < 0) pauseButtonPosition = 0;
   pauseButton.style.right = `${pauseButtonPosition + 5}px`;
 
 
