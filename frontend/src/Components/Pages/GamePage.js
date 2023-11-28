@@ -173,8 +173,7 @@ const GamePage = () => {
   // eslint-disable-next-line no-unused-vars
   const rulesAndCommandsDiv = new Modal(document.getElementById('rulesAndCommandsDiv'), {
     show: true, 
-    keyboard: false,
-    backdrop: false
+    keyboard: false
   });
 
   rulesAndCommandsDiv.show();

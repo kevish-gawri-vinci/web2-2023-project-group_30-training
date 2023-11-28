@@ -106,3 +106,7 @@
     margin: 5px;
 }
 
+#rulesAndCommandsDiv.modal, #rulesAndCommandsDiv.modal-fade, #rulesAndCommandsDiv.modal-dialog, 
+#pauseModal.modal, #pauseModal.modal-fade, #pauseModal.modal-dialog{
+    background-color: rgba(0, 0, 0, 0.5);
+}
