@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
 *, nav{
-    overflow-x: hidden;
+    overflow: hidden;
     background-size: cover;
     font-family: 'Pixelify Sans', sans-serif;
     font-weight: 600px;
@@ -27,6 +27,7 @@
     align-items: center;
     flex-direction: column;
     height: 60vh;
+    width: max-content;
 }
 
 .menuButtons{
@@ -48,7 +49,6 @@
     align-content: center;
     width: 260px;
     font-size: 20px;
-    color:red
 }
 
 #menu .menuButtons a {
@@ -92,4 +92,17 @@
     background-color: transparent;
 }
 
+#confToRestartDiv, #confToExitDiv {
+    text-align: center;
+    width: 260px;
+}
+
+
+
+.confButtons{
+    border-color: #2F5B02;
+    border-bottom: 7px solid #2F5B02;
+    border-right: 7px solid black;
+    margin: 5px;
+}
 
