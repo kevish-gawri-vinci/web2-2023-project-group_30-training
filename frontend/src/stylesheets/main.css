@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap');
+*, nav{
+    overflow: hidden;
+    background-size: cover;
+    font-family: 'Pixelify Sans', sans-serif;
+    font-weight: 600px;
+    color: white;
+    background-color: green;
+}
+.navbar-brand, #navbarWrapper{
+    color: white;
+}
+
+.navbar-brand{
+    font-size: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#title{
+    font-size: 50px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+#menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+    width: max-content;
+}
+
+.menuButtons{
+    height: 50px;
+    margin: 7px;
+    width: 220px;
+    border-color: #2F5B02;
+    border-bottom: 7px solid #2F5B02;
+    border-right: 7px solid black;
+}
+
+.menuButtons:active, .confButtons:active{
+    border: 2px solid #2F5B02;
+}
+
+.menuButtons{
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+    width: 260px;
+    font-size: 20px;
+}
+
+#menu .menuButtons a {
+    text-decoration: none;
+    text-decoration-line: none;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+.navbar-toggler-icon{
+    float: right;
+    font-size: 30px;
+}
+
+#gamePauseButton{
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    background: green;
+    font-size: x-large;
+    border-radius: 40px;
+    overflow: hidden;
+    border: 2px solid black;
+    margin-top: 5px;
+}
+
+#pauseMenu{
+    border: 3px solid black;
+}
+
+#pauseMenuCloseButton {
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    border: 2px solid black;
+    font-size: x-large;
+    overflow: hidden;
+}
+
+.modal, .modal-fade, .modal-dialog{
+    background-color: transparent;
+}
+
+#confToRestartDiv, #confToExitDiv {
+    text-align: center;
+    width: 260px;
+}
+
+
+
+.confButtons{
+    border-color: #2F5B02;
+    border-bottom: 7px solid #2F5B02;
+    border-right: 7px solid black;
+    margin: 5px;
+}
+
+#rulesAndCommandsDiv.modal, #rulesAndCommandsDiv.modal-fade, #rulesAndCommandsDiv.modal-dialog, 
+#pauseModal.modal, #pauseModal.modal-fade, #pauseModal.modal-dialog{
+    background-color: rgba(0, 0, 0, 0.5);
+}
