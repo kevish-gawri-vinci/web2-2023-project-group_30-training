@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import ScoreLabel from './ScoreLabel';
-import skyAsset from '../../assets/sky.png';
-import platformAsset from '../../assets/platform.png';
+import skyAsset from '../../assets/sky_test.png';
+import asteroidAsset from '../../assets/asteroid.png';
 import dudeAsset from '../../assets/Ship1.png';
 
 const DUDE_KEY = 'dude';
@@ -22,7 +22,7 @@ class GameScene extends Phaser.Scene {
 
   preload() {
     this.load.image('sky', skyAsset);
-    this.load.image('obstacle', platformAsset);
+    this.load.image('obstacle', asteroidAsset);
     this.load.image(DUDE_KEY, dudeAsset);
   }
 
@@ -37,9 +37,9 @@ class GameScene extends Phaser.Scene {
     // obstacles
     this.obstacles = this.physics.add.group({
       key: 'obstacle',
-      repeat: 5,
+      repeat: 20,
       setXY: {
-        x: 800, y: 0, stepX: 250 
+        x: 800, y: 0, stepX: 250
       }
     })
 
@@ -54,7 +54,7 @@ class GameScene extends Phaser.Scene {
     this.physics.add.collider(this.player, this.obstacles, this.playerObstacleCollision, null, this);
 
     this.scoreLabel = this.createScoreLabel(16, 16, 0);
-    // this.physics.add.collider(this.player, platforms);
+
     this.cursors = this.input.keyboard.createCursorKeys();
 
     this.timerEvent = this.time.addEvent({
@@ -111,12 +111,12 @@ class GameScene extends Phaser.Scene {
 
     // Update timerEvent.delay
     this.timerEvent.delay = this.obstacleDelay;
+
   }
 
   createScoreLabel(x, y, score) {
-    const style = { fontSize: '32px', fill: '#000' };
+    const style = { fontSize: '32px', fill: '#FFF' };
     const label = new ScoreLabel(this, x, y, score, style);
-    console.log('score:', label);
     this.add.existing(label);
 
     return label;
