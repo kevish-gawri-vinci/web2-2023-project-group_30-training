@@ -46,7 +46,7 @@ class GameScene extends Phaser.Scene {
     // create obstacles at random heights
     this.obstacles.children.iterate(obstacle => {
       if (obstacle) {
-          const randomY = Phaser.Math.Between(100, 500);
+          const randomY = Phaser.Math.Between(15, 705);
           obstacle.setPosition(obstacle.x, randomY);
       }
     });
