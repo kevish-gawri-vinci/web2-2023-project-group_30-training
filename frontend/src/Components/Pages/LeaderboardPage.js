@@ -1,73 +1,56 @@
 // import ClearPage from '../../utils/render'
-
-  const leaderboardPage = () => {
-    // ClearPage.ClearPage();
-    const main = document.querySelector('main');
-
-    let leaderboardData = [
-        { name: 'Player 1', score: 100 },
-        { name: 'Player 2', score: 90 },
-        { name: 'Player 3', score: 80 },
-        // Add more initial data as needed...
-    ];
-    const updateLeaderboard = (newPlayer) => {
-      leaderboardData.push(newPlayer);
-      leaderboardData.sort((a, b) => b.score - a.score); // Sort in descending order
-    
-      // Keep only the top 10 players
-      leaderboardData = leaderboardData.slice(0, 10);
-    
-      // Update the displayed leaderboard
-      // eslint-disable-next-line no-use-before-define
-      renderLeaderboard();
-    };
-    
-    const renderLeaderboard = () => {
-        // Create a leaderboard structure
-        const leaderboardContainer = document.createElement('div');
-        leaderboardContainer.classList.add('leaderboard');
-
-        // Create leaderboard content
-        const leaderboardTitle = document.createElement('h1');
-        leaderboardTitle.textContent = 'Leaderboard';
-
-        // Create a table to display leaderboard data
-        const leaderboardTable = document.createElement('table');
-        const tableHeader = leaderboardTable.createTHead();
-        const headerRow = tableHeader.insertRow();
-        const nameHeader = document.createElement('th');
-        nameHeader.textContent = 'Player Name';
-        const scoreHeader = document.createElement('th');
-        scoreHeader.textContent = 'Score';
-        headerRow.appendChild(nameHeader);
-        headerRow.appendChild(scoreHeader);
-
-        // Populate leaderboard table with data
-        const tableBody = leaderboardTable.createTBody();
-        leaderboardData.forEach(entry => {
-            const row = tableBody.insertRow();
-            const nameCell = row.insertCell();
-            nameCell.textContent = entry.name;
-            const scoreCell = row.insertCell();
-            scoreCell.textContent = entry.score;
-        });
-
-        // Append elements to the leaderboard container
-        leaderboardContainer.appendChild(leaderboardTitle);
-        leaderboardContainer.appendChild(leaderboardTable);
-
-        // Clear existing content and append the updated leaderboard to the main element
-        main.innerHTML = '';
-        main.appendChild(leaderboardContainer);
-    };
-
-    // Initial render of the leaderboard
-    renderLeaderboard();
-
-    // Simulating a new player with a score
-    const newPlayer = { name: 'New Player', score: 95 };
-    updateLeaderboard(newPlayer);
+  // Function to fetch player data from the API
+const fetchPlayerData = async () => {
+    try {
+        const response = await fetch('YOUR_API_ENDPOINT_HERE'); // Replace with your API endpoint
+        const data = await response.json();
+        return data.players; // Assuming the API returns an array of players
+    } catch (error) {
+        console.error("Error fetching player data:", error);
+        return []; // Return empty array if there's an error
+    }
 };
+
+// Function to update the leaderboard with new player data
+const leaderboardPage = (players) => {
+    players.sort((a, b) => b.points - a.points); // Sort players by points
+
+    const main = document.querySelector('main');
+    main.innerHTML = `
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h1 class="text-center">Classement</h1>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="bg-success text-white" scope="col">Pseudo</th>
+                                <th class="bg-success text-white" scope="col">Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${players.slice(0, 10).map((player) => `
+                                <tr>
+                                    <td class="text-white bg-success">${player.name}</td>
+                                    <td class="text-white bg-success">${player.points}</td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    `;
+};
+
+// Function to update the leaderboard from the API
+const updateLeaderboardFromAPI = async () => {
+    const playersFromAPI = await fetchPlayerData(); // Get player data from the API
+    leaderboardPage(playersFromAPI); // Update the leaderboard with the fetched data
+};
+
+// Call this function to update the leaderboard from the API
+updateLeaderboardFromAPI();
 
 export default leaderboardPage;
 
