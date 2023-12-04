@@ -110,3 +110,7 @@
 #pauseModal.modal, #pauseModal.modal-fade, #pauseModal.modal-dialog{
     background-color: rgba(0, 0, 0, 0.5);
 }
+
+#commandsDiv{
+    background-color: #2F5B02;
+}
