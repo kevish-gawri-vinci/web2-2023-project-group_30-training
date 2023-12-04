@@ -2,7 +2,7 @@
   // Function to fetch player data from the API
 const fetchPlayerData = async () => {
     try {
-        const response = await fetch('YOUR_API_ENDPOINT_HERE'); // Replace with your API endpoint
+        const response = await fetch('/api/data/user.json'); // Replace with your API endpoint
         const data = await response.json();
         return data.players; // Assuming the API returns an array of players
     } catch (error) {
@@ -41,6 +41,7 @@ const leaderboardPage = (players) => {
             </div>
         </div>
     `;
+
 };
 
 // Function to update the leaderboard from the API
