@@ -14,7 +14,7 @@ const fetchPlayerData = async () => {
 };
 
 // Function to update the leaderboard with new player data
-const leaderboardPage = (players) => {
+const LeaderboardPage = (players) => {
     players.sort((a, b) => b.points - a.points); // Sort players by points
 
     const main = document.querySelector('main');
@@ -55,6 +55,6 @@ const updateLeaderboardFromAPI = async () => {
 // Call this function to update the leaderboard from the API
 updateLeaderboardFromAPI();
 
-export default leaderboardPage;
+export default LeaderboardPage;
 */
  
