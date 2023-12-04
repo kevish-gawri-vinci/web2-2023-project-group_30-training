@@ -24,8 +24,6 @@ const LoginPage = () => {
   `;
 };
 
-
-
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
