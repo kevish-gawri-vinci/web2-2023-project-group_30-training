@@ -1,5 +1,7 @@
 // import ClearPage from '../../utils/render'
   // Function to fetch player data from the API
+/*
+
 const fetchPlayerData = async () => {
     try {
         const response = await fetch('/api/data/user.json'); // Replace with your API endpoint
@@ -54,5 +56,5 @@ const updateLeaderboardFromAPI = async () => {
 updateLeaderboardFromAPI();
 
 export default leaderboardPage;
-
+*/
  
