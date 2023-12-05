@@ -57,7 +57,7 @@ const GamePage = () => {
                 </div>
               </div>
 
-              <button class="row menuButtons" type="button" id="commandsButton" data-bs-target="#rulesAndCommandsDiv" data-bs-toggle="modal">Commandes</button>
+              <button class="row menuButtons" type="button" id="commandsButton" data-bs-target="#rulesAndCommandsDiv" data-bs-toggle="modal">Commandes et règles</button>
                   
               <button class="row menuButtons" id="exitButton">Quitter le jeu</button>
 
@@ -153,7 +153,6 @@ const GamePage = () => {
   const form = document.getElementById('formSeeRulesAgain');
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log('form submitted ', e);
     const checkbox = document.getElementById('check');
     const valueCheckbox = checkbox.checked;
     localStorage.setItem('disableRules', valueCheckbox);
