@@ -52,4 +52,6 @@ const HomePage = () => {
   animatedTitle.play();
 };
 
+
+
 export default HomePage;

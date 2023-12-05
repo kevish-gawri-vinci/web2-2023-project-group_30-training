@@ -1,4 +1,7 @@
+import { setUserSessionData } from "../../utils/auth";
 import Navigate from "../Router/Navigate";
+
+
 
 const LoginPage = () => {
   const main = document.querySelector('main');
@@ -42,7 +45,9 @@ const LoginPage = () => {
       });
 
       if (response.ok) {
-        Navigate('/')
+        
+        setUserSessionData({username})
+        await Navigate('/')
     } else {
         alert("Nom d'utilisateur ou mot de passe incorrect");
       }
