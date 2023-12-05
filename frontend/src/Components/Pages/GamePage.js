@@ -1,10 +1,15 @@
 import Phaser from 'phaser';
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, import/no-duplicates
 import {Modal} from 'bootstrap'
 import GameScene from '../Game/GameScene';
+import CommandsPage from './CommandsPage';
 // import { clearPage } from '../../utils/render';
+// import CommandsPage from "./CommandsPage";
+// eslint-disable-next-line import/order, import/no-duplicates
+
 
 let game;
+const rulesAndCommands = CommandsPage();
 
 const GamePage = () => {
   const phaserGame = `
@@ -12,20 +17,16 @@ const GamePage = () => {
   <div class="modal fade" id="rulesAndCommandsDiv">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header text-center justify-content-center">
-          <h3 class="modal-title">Règles</h3>
-        </div>
-
+        <form class="" id="formSeeRulesAgain">
         <div class="modal-body text-center">
-          <p> tetstuzafeyuzagdyizae </p>
-          <form class="">
-            <input type="checkbox">
-            <label>Ne plus montrer ce message</label>
-          </form>
+          ${rulesAndCommands}
+            <input type="checkbox" id="check">
+            <label for="check" id="label">Ne plus montrer ce message</label>
         </div>
         <div class="modal-footer bg-transparent">
-          <button data-bs-dismiss="modal" id="closeRulesButton">Fermer</button>
+          <input type="submit" data-bs-dismiss="modal" id="closeRulesButton" for="formSeeRulesAgain" value="Fermer">
         </div>
+        </form>
       </div>
     </div>
   </div>  
@@ -56,7 +57,8 @@ const GamePage = () => {
                 </div>
               </div>
 
-              <button class="row menuButtons" data-uri="/commands">Commandes</button>
+              <button class="row menuButtons" type="button" id="commandsButton" data-bs-target="#rulesAndCommandsDiv" data-bs-toggle="modal">Commandes</button>
+                  
               <button class="row menuButtons" id="exitButton">Quitter le jeu</button>
 
               <div id="confToExitDiv" style="display: none;">
@@ -72,7 +74,8 @@ const GamePage = () => {
       </div>
     </div>
   </div>
-</div>`;
+</div>
+`;
 
   const main = document.querySelector('main');
   main.innerHTML = phaserGame;
@@ -110,8 +113,8 @@ const GamePage = () => {
   closeRulesButton.addEventListener('click', () => {
     game.resume();
   })
-  
 
+  
 
   // Onclick of the restart button
   const restartButton = document.getElementById("restartButton");
@@ -145,6 +148,17 @@ const GamePage = () => {
     confToExitDiv.style.display = 'none';
   });
 
+  // Form submission
+
+  const form = document.getElementById('formSeeRulesAgain');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log('form submitted ', e);
+    const checkbox = document.getElementById('check');
+    const valueCheckbox = checkbox.checked;
+    localStorage.setItem('disableRules', valueCheckbox);
+  })
+
   // Pause the game upon click of pause button
 
   pauseButton.addEventListener('click', () => {
@@ -170,19 +184,31 @@ const GamePage = () => {
     backdrop: false
   });
 
-  
   // eslint-disable-next-line no-unused-vars
   const rulesAndCommandsDiv = new Modal(document.getElementById('rulesAndCommandsDiv'), {
-    show: true, 
-    keyboard: false
+    keyboard: false, 
+    backdrop: false
   });
+
+  // Show commands 
+  const commandsButton = document.getElementById('commandsButton');
+  commandsButton.addEventListener('click', () => {
+    const check = document.getElementById('check');
+    const label = document.getElementById('label');
+    check.style.display = 'none'
+    label.style.display = 'none'
+  });
+
   
   document.addEventListener('keyup', (e) => {
     // eslint-disable-next-line no-underscore-dangle
     if(e.key === 'Escape' && rulesAndCommandsDiv._isShown === false) pauseModal.toggle();
   })
-
-  rulesAndCommandsDiv.show();
+  if (localStorage.getItem('disableRules') === 'true'){
+    game.resume();
+  } else {
+    rulesAndCommandsDiv.show();
+  }
   
 };
 
