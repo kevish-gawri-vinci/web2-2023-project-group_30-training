@@ -70,7 +70,7 @@ class GameScene extends Phaser.Scene {
   }
   
   gameOver(){
-    this.scoreLabel.setText(`GAME OVER :( \nYour Score = ${this.scoreLabel.score}`);
+    this.scoreLabel.setText(`GAME OVER  \nYour Score = ${this.scoreLabel.score}`);
     this.physics.pause();
 
     this.player.setTint(0xff0000);

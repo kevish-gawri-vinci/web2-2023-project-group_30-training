@@ -49,6 +49,7 @@ if (registerForm) {
         const confirm = document.getElementById('confirm').value;
 
         if (password !== confirm) {
+            // eslint-disable-next-line no-alert
             alert('Les mots de passe ne correspondent pas');
             return;
         }
@@ -69,9 +70,11 @@ if (registerForm) {
             } else {
                 
                 console.error('Erreur d\'inscription');
+                // eslint-disable-next-line no-alert
                 alert('Erreur lors de l\'inscription');
             }
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error('Erreur:', error);
         }
     });
