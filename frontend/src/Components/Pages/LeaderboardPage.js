@@ -11,7 +11,8 @@ const players=[
     { "name": "Player7", "points": 70 },
     { "name": "Player8", "points": 65 },
     { "name": "Player9", "points": 60 },
-    { "name": "Player10", "points": 55 }
+    { "name": "Player10", "points": 55 },
+    {"name":"Player 11","points":70},
 ]
 
 // Function to update the leaderboard with new player data
