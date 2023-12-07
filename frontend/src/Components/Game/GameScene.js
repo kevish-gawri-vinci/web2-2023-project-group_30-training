@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import ScoreLabel from './ScoreLabel';
-import skyAsset from '../../assets/sky_test.png';
+import skyAsset from '../../assets/sky_tes.jpg';
 import asteroidAsset from '../../assets/asteroid.png';
 import dudeAsset from '../../assets/Ship1.png';
 
