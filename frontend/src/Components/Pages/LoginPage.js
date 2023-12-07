@@ -1,16 +1,15 @@
-import { setUserSessionData } from "../../utils/auth";
-import Navigate from "../Router/Navigate";
-
-
+import { setUserSessionData } from '../../utils/auth';
+import Navigate from '../Router/Navigate';
+import Navbar from '../Navbar/Navbar';
 
 const LoginPage = () => {
   const main = document.querySelector('main');
   main.innerHTML = `
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <h1 class="text-center">Se connecter</h1>
-                    <form id="loginForm" class="needs-validation">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <h1 class="text-center">Se connecter</h1>
+          <form id="loginForm" class="needs-validation">
                         <div class="mb-3">
                             <label for="username" class="form-label">Nom d'utilisateur:</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -23,10 +22,10 @@ const LoginPage = () => {
                         </div>
                         <button type="submit" class="btn btn-success">Se connecter</button>
                     </form>
-                </div>
-            </div>
         </div>
-    `;
+      </div>
+    </div>
+  `;
 
   const loginForm = document.getElementById('loginForm');
   loginForm.addEventListener('submit', async (event) => {
@@ -45,15 +44,26 @@ const LoginPage = () => {
       });
 
       if (response.ok) {
-        
-        setUserSessionData({username})
-        await Navigate('/')
-    } else {
+        setUserSessionData({ username });
+        await Navigate('/');
+        reloadNavbar(); // Ajout de la fonction pour recharger dynamiquement la barre de navigation
+      } else {
         alert("Nom d'utilisateur ou mot de passe incorrect");
       }
     } catch (error) {
       console.error('Erreur:', error);
     }
   });
+
+  // Fonction pour recharger dynamiquement la barre de navigation
+  function reloadNavbar() {
+    const navbarWrapper = document.querySelector('#navbarWrapper');
+    navbarWrapper.innerHTML = '';
+    Navbar(); // Appel à la fonction Navbar pour regénérer la barre de navigation mise à jour
+  }
+
+  // Appel à la fonction Navbar après avoir défini le formulaire pour éviter les problèmes de rendu
+  Navbar();
 };
+
 export default LoginPage;
