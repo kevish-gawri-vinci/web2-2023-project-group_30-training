@@ -2,13 +2,13 @@ import Phaser from 'phaser';
 import ScoreLabel from './ScoreLabel';
 import skyAsset from '../../assets/sky_tes.jpg';
 import asteroidAsset from '../../assets/asteroid.png';
-import dudeAsset from '../../assets/Ship1.png';
+import dudeAsset from '../../assets/Ship2.png';
 
 const DUDE_KEY = 'dude';
 
 class GameScene extends Phaser.Scene {
   constructor() {
-    super('game-scene');
+    super({ key: 'game-scene' });
     this.player = undefined;
     this.cursors = undefined;
     this.scoreLabel = undefined;
@@ -17,7 +17,7 @@ class GameScene extends Phaser.Scene {
     this.obstacleDelay = 100; // Initial delay
     this.obstacleDelayDecreaseRate = 10; // Rate at which delay decreases
     this.minObstacleDelay = 10; // Minimum delay value
-    this.gameOverFlag  = false;
+    this.gameOverFlag = false;
   }
 
   preload() {
@@ -37,17 +37,18 @@ class GameScene extends Phaser.Scene {
     // obstacles
     this.obstacles = this.physics.add.group({
       key: 'obstacle',
-      repeat: 20,
+      repeat: 25,
       setXY: {
-        x: 800, y: 0, stepX: 250
-      }
-    })
+        x: 900,
+        y: 0,
+        stepX: 250,
+      },
+    });
 
-    // create obstacles at random heights
-    this.obstacles.children.iterate(obstacle => {
+    this.obstacles.children.iterate((obstacle) => {
       if (obstacle) {
-          const randomY = Phaser.Math.Between(15, 705);
-          obstacle.setPosition(obstacle.x, randomY);
+        const randomY = Phaser.Math.Between(15, 900);
+        obstacle.setPosition(obstacle.x, randomY);
       }
     });
 
@@ -61,20 +62,20 @@ class GameScene extends Phaser.Scene {
       delay: this.obstacleDelay,
       callback: this.moveObstacles,
       callbackScope: this,
-      loop: true
-    })
+      loop: true,
+    });
   }
 
   playerObstacleCollision() {
     this.gameOver();
   }
-  
-  gameOver(){
+
+  gameOver() {
     this.scoreLabel.setText(`GAME OVER  \nYour Score = ${this.scoreLabel.score}`);
     this.physics.pause();
 
     this.player.setTint(0xff0000);
-    this.gameOverFlag  = true;
+    this.gameOverFlag = true;
   }
 
   update() {
@@ -91,27 +92,21 @@ class GameScene extends Phaser.Scene {
     }
   }
 
-  moveObstacles(){
+  moveObstacles() {
     this.obstacles.setVelocityX(-200);
 
-    this.obstacles.children.iterate(obstacle =>{
-      if(obstacle && obstacle.getBounds().right<0){
+    this.obstacles.children.iterate((obstacle) => {
+      if (obstacle && obstacle.getBounds().right < 0) {
         const randomY = Phaser.Math.Between(100, 500);
         obstacle.setPosition(800, randomY);
 
-        this.scoreLabel.add(10)
+        this.scoreLabel.add(10);
       }
-    })
+    });
 
-    // decrease delay to make obstacles appear faster over time
     this.obstacleDelay -= this.obstacleDelayDecreaseRate;
-
-    // Ensure delay doesn't go below a minimum value
     this.obstacleDelay = Math.max(this.obstacleDelay, this.minObstacleDelay);
-
-    // Update timerEvent.delay
     this.timerEvent.delay = this.obstacleDelay;
-
   }
 
   createScoreLabel(x, y, score) {
@@ -121,7 +116,5 @@ class GameScene extends Phaser.Scene {
 
     return label;
   }
-
 }
-
 export default GameScene;

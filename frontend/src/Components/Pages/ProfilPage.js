@@ -11,14 +11,12 @@ const ProfilePage = () => {
   const profileHTML = `
     <div class="container">
      <div class="row justify-content-center">
-      <div class="mask-custom">
          <div class="profile">
              <h1 class=text-center>${name}</h1>
              <p class=text-center>Age: ${age}</p>
              <p class=text-center>Email: ${email}</p>
              <div class="text-center">date de naissance: ${birthdate}</div>
          </div>
-      </div>
      </div>
     </div>
     `;
