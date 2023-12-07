@@ -37,6 +37,19 @@ if (loginLink) {
     Navigate('/login');
   });
 }
+function logButton() {
+  let logoption = '';
+  if (isLoggedIn()) {
+    logoption = `<a class="nav-link text-white fs-4" href="#" data-uri="/" id="logout">Se déconnecter</a>`;
+    console.log(isLoggedIn());
+    
+  } else {
+    logoption = `<a class="nav-link text-white fs-4" href="#" data-uri="/login">Se connecter</a>`;
+  }
+
+  return logoption;
+}
+
 
 
   const navbarBrand = document.querySelector('.navbar-brand');
