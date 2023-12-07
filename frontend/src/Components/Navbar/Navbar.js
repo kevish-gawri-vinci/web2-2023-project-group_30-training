@@ -1,5 +1,5 @@
 // import { Navbar as BootstrapNavbar } from 'bootstrap';
-import { isLoggedIn, setUserSessionData, logoutuser } from '../../utils/auth';
+import { isLoggedIn} from '../../utils/auth';
 import Navigate from '../Router/Navigate';
 
 const Navbar = () => {
@@ -14,7 +14,6 @@ const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
         ${register()}
-        ${logButton()}
       </ul>
         </div>
       </div>
@@ -30,11 +29,6 @@ const Navbar = () => {
     Navigate('/register');
 
   });
-
-  const logoutButton = document.querySelector('#logout')
-    logoutButton.addEventListener('click', logout)
-
-    
 }
 
   const loginLink = document.querySelector('[data-uri="/login"]');
@@ -51,18 +45,6 @@ if (loginLink) {
   });
 };
 
-function logButton() {
-  let logoption = '';
-  if (isLoggedIn()) {
-    logoption = `<a class="nav-link text-white fs-4" href="#" data-uri="/" id="logout">Se déconnecter</a>`;
-    console.log(isLoggedIn());
-    
-  } else {
-    logoption = `<a class="nav-link text-white fs-4" href="#" data-uri="/login">Se connecter</a>`;
-  }
-
-  return logoption;
-}
 
 function register() {
   let registeroption = '';
@@ -73,15 +55,6 @@ function register() {
   }
 
   return registeroption;
-}
-
-
-
-function logout(){
-  console.log("Utilisateur connecté :", isLoggedIn());
-  setUserSessionData(null);
-  logoutuser();
-  Navigate('/');
 }
 
 export default Navbar;
