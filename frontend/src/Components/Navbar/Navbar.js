@@ -12,7 +12,6 @@ const Navbar = () => {
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-        
         ${logButton()}
       </ul>
         </div>
@@ -36,13 +35,18 @@ const Navbar = () => {
       Navigate('/login');
     });
   }
+  const profileLink = document.querySelector('[data-uri="/profile"]');
+  if (profileLink) {
+    profileLink.addEventListener('click', () => {
+      Navigate('/profile');
+    })
+  }
 
   const navbarBrand = document.querySelector('.navbar-brand');
   navbarBrand.addEventListener('click', () => {
     Navigate('/');
   });
 
-  // Ajouter le gestionnaire d'événements au niveau du document pour le bouton "Se déconnecter"
   document.addEventListener('click', (event) => {
     const logoutButton = event.target.closest('[data-uri="/"]');
     if (logoutButton) {
@@ -53,27 +57,19 @@ const Navbar = () => {
   function logButton() {
     let logoption = '';
     if (isLoggedIn()) {
-      logoption = `<a class="nav-link text-white fs-4" href="#" data-uri="/">Se déconnecter</a>`;
+      logoption = `<a class="nav-link text-white fs-4" href="#" data-uri="/">Se déconnecter</a>
+                  <a class="nav-link text-white fs-4" href="#" data-uri="/profile">Profil</a>`;
+
       console.log(isLoggedIn());
     } else {
       logoption = `
         <a class="nav-link text-white fs-4" href="#" data-uri="/login">Se connecter</a>
-        ${register()}
+        <a class="nav-link text-white fs-4" href="#" data-uri="/register">S'inscrire</a>
       `;
     }
 
     return logoption;
   }
-
-  function register() {
-    let registeroption = '';
-    if (!isLoggedIn()) {
-      registeroption = `<a class="nav-link text-white fs-4" href="#" data-uri="/register">S'inscrire</a>`;
-    }
-
-    return registeroption;
-  }
-
   function logout() {
     setUserSessionData(null);
     logoutuser();

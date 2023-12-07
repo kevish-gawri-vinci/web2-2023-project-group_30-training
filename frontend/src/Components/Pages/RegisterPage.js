@@ -35,10 +35,7 @@ const RegisterPage = () => {
           </div>
       </div>
   `;
-
-
-
-
+  
 const registerForm = document.getElementById('registerForm');
 
 
