@@ -3,6 +3,7 @@ import Phaser from 'phaser';
 import {Modal} from 'bootstrap'
 import GameScene from '../Game/GameScene';
 import CommandsPage from './CommandsPage';
+
 // import { clearPage } from '../../utils/render';
 // import CommandsPage from "./CommandsPage";
 // eslint-disable-next-line import/order, import/no-duplicates
@@ -13,7 +14,7 @@ const rulesAndCommands = CommandsPage();
 
 const GamePage = () => {
   const phaserGame = `
-<div id="gamePageDiv">
+<div id="gamePageDiv" >
   <div class="modal fade" id="rulesAndCommandsDiv">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -82,7 +83,7 @@ const GamePage = () => {
 
   const mainWidth = window.innerWidth;
   const pauseButton = document.getElementById('gamePauseButton');
-  let pauseButtonPosition = ((mainWidth - 800) / 2);
+  let pauseButtonPosition = ((mainWidth - 1200) / 2);
   if (pauseButtonPosition < 0) pauseButtonPosition = 0;
   pauseButton.style.right = `${pauseButtonPosition + 5}px`;
 

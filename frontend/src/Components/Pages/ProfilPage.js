@@ -12,10 +12,11 @@ const ProfilePage = () => {
     <div class="container">
      <div class="row justify-content-center">
          <div class="profile">
-             <h1 class=text-center>${name}</h1>
-             <p class=text-center>Age: ${age}</p>
-             <p class=text-center>Email: ${email}</p>
-             <div class="text-center">date de naissance: ${birthdate}</div>
+             <h1 class=text-center>Profile</h1>
+             <h2 class=text-center>${name}</h2>
+             <h3 class=text-center>Age: ${age}</h3>
+             <h3 class=text-center>Email: ${email}</h3>
+             <h3 class="text-center">date de naissance: ${birthdate}</3>
          </div>
      </div>
     </div>

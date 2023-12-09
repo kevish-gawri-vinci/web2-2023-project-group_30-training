@@ -23,7 +23,7 @@ const LeaderboardPage = () => {
   main.innerHTML = `
         <div class="container">
             <div class="row justify-content-center">
-                <div class="mask-custom">
+                <div">
                     <h1 class="text-center">Classement</h1>
                     <table class="table table-hover">
                         <thead>
