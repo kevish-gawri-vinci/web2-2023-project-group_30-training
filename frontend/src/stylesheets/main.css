@@ -28,6 +28,10 @@
     flex-direction: column;
     height: 60vh;
     width: max-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .menuButtons{
@@ -74,10 +78,12 @@
     overflow: hidden;
     border: 2px solid black;
     margin-top: 5px;
+    z-index: 89;
 }
 
-#pauseMenu{
+#pauseMenuModal{
     border: 3px solid black;
+    height: 600px;
 }
 
 #pauseMenuCloseButton {
@@ -131,4 +137,21 @@
 
 ::backdrop{
     opacity: 0.75;
+}
+
+#gameOverScreen{
+    background-color: transparent;
+    display: flex;
+    transition-duration: 2s;
+}
+
+#gameOverScreen span{
+    top: 16px;
+    left: 16px;
+    position: absolute;
+    transition-duration: 2s;
+}
+
+.navbar-brand:focus, .navbar-brand:hover{
+    color: white;
 }

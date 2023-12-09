@@ -3,20 +3,19 @@
 import anime from 'animejs';
 import {clearPage} from '../../utils/render';
 import { isLoggedIn } from '../../utils/auth';
+import Navigate from '../Router/Navigate';
 
 const HomePage = () => {
-  clearPage();
-  const main = document.querySelector('main');
+  clearPage(true);
+  const menu = document.getElementById('menu');
   let html= '';
   html+= `
-  <div id="menu" class="container mx-auto">
     <span id="title" class="">Zero-G Odissey</span><br>
-    <button class="row menuButtons"><a href="#" data-uri="/game">Lancer le jeu</a></button>
-    <button class="row menuButtons"><a href="#" data-uri="/leaderboard">Classement</a></button>
-    ${isLoggedIn() ? '<button class="row menuButtons"><a href="#" data-uri="/shop">Boutique</a></button>' : ''}
-  </div>`
- 
-  main.innerHTML = html;
+    <button class="row menuButtons" id="startGameBtn"><a href="" data-uri="/game" >Lancer le jeu</a></button>
+    <button class="row menuButtons" id="leaderboardBtn"><a href="" data-uri="/leaderboard">Classement</a></button>
+    ${isLoggedIn() ? '<button class="row menuButtons" id="shopBtn"><a href="#" data-uri="/shop">Boutique</a></button>' : ''}
+`
+  menu.innerHTML = html;
   const title = document.getElementById("title");
   
   const animatedTitle = anime({
@@ -39,6 +38,11 @@ const HomePage = () => {
         easing: 'easeInOutQuad',
       });
     });
+
+document.getElementById('startGameBtn').addEventListener('click', () => {Navigate('/game')});
+document.getElementById('leaderboardBtn').addEventListener('click', () => {Navigate('/leaderboard')});
+document.getElementById('shopBtn')?.addEventListener('click', () => {Navigate('/shop')})
+
 
     button.addEventListener('mouseleave', () => {
       anime({
