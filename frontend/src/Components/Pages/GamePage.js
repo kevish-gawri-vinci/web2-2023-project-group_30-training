@@ -168,7 +168,6 @@ const GamePage = () => {
     if(e.key === 'Escape' && rulesAndCommandsDiv._isShown === false && document.URL.endsWith('/game')) {
       pauseModal.show();
       game.pause();
-      console.log();
     }
   })
   if (localStorage.getItem('disableRules') === 'true'){
