@@ -4,9 +4,11 @@ import skyAsset from '../../assets/sky_test.png';
 import asteroidAsset from '../../assets/asteroid.png';
 import dudeAsset from '../../assets/Ship1.png';
 import bulletAsset from '../../assets/bullets.png';
+import starAsset from '../../assets/star.png';
 
 const DUDE_KEY = 'dude';
 const BULLET_KEY = 'bullet';
+const STAR_KEY = 'star';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -27,6 +29,7 @@ class GameScene extends Phaser.Scene {
     this.load.image('obstacle', asteroidAsset);
     this.load.image(DUDE_KEY, dudeAsset);
     this.load.image(BULLET_KEY, bulletAsset);
+    this.load.image(STAR_KEY, starAsset);
   }
 
   create() {
@@ -84,10 +87,32 @@ class GameScene extends Phaser.Scene {
     this.bulletReadyText = this.add.text(16, 50, 'Bullet Ready', { fontSize: '20px', fill: '#00FF00' });
 
     this.lastFiredTime = 0;  // Time when the last bullet was fired
-    this.fireDelay = 1000;    // Delay between consecutive shots in milliseconds
+    this.fireDelay = 2000;    // Delay between consecutive shots in milliseconds
 
     this.physics.add.collider(this.bullets, this.obstacles, this.bulletObstacleCollision, null, this);
     this.physics.world.setBoundsCollision(true, true, false, false);
+
+    // stars
+    this.stars = this.physics.add.group({
+      key: STAR_KEY,
+      repeat: 0.5,
+      setXY: () => {
+        let randomY = Phaser.Math.Between(15, 705);
+        while (this.obstacleAtPosition(800, randomY)) {
+          randomY = Phaser.Math.Between(15, 705);
+        }
+        return { x: 800, y: randomY };
+      },
+      setScale: { x: 1, y: 1 },
+    });
+
+    this.stars.children.iterate(star => {
+      const randomY = Phaser.Math.Between(15, 705);
+      star.setPosition(star.x, randomY);
+    });
+
+    this.physics.add.overlap(this.player, this.stars, this.collectStar, null, this);
+
   }
 
   playerObstacleCollision() {
@@ -154,6 +179,15 @@ class GameScene extends Phaser.Scene {
     // Update timerEvent.delay
     this.timerEvent.delay = this.obstacleDelay;
 
+
+    this.stars.setVelocityX(-200);
+
+    this.stars.children.iterate(star => {
+      if (star && star.getBounds().right < 0) {
+        const randomY = Phaser.Math.Between(100, 500);
+        star.setPosition(800, randomY);
+      }
+    });
   }
 
   tryShootBullet() {
@@ -201,6 +235,21 @@ class GameScene extends Phaser.Scene {
     this.add.existing(label);
 
     return label;
+  }
+
+  collectStar(player, star) {
+    star.disableBody(true, true);  // Disable the star and hide it
+    this.scoreLabel.add(50);  // Increase the score when a star is collected
+  }
+
+  obstacleAtPosition(x, y) {
+    let obstacleAtPosition = false;
+    this.obstacles.children.iterate(obstacle => {
+      if (obstacle.getBounds().contains(x, y)) {
+        obstacleAtPosition = true;
+      }
+    });
+    return obstacleAtPosition;
   }
 
 }
