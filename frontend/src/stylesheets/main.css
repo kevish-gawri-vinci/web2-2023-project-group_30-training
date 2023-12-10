@@ -155,3 +155,26 @@
 .navbar-brand:focus, .navbar-brand:hover{
     color: white;
 }
+
+#carouselShopItems{
+    height: 50vh;
+    width: 50rem;
+    margin-top: 75px;
+}
+.shopItemTitle{
+    color: white;
+}
+.shopItemImg{
+    height: 50px;
+    align-self: center;
+}
+.shopItemDesc{
+    align-self: flex-end;
+    justify-self: baseline;
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+}
+.shopItemContainer{
+    display: flex;
+}
