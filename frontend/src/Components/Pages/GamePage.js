@@ -1,22 +1,20 @@
-/* eslint-disable no-underscore-dangle */
 import Phaser from 'phaser';
 // eslint-disable-next-line no-unused-vars, import/no-duplicates
 import {Modal} from 'bootstrap'
 import GameScene from '../Game/GameScene';
-import RulesAndCommands from '../Modals/CommandsPage';
-import PauseMenu from '../Modals/PauseMenu';
-import GameOver from '../Modals/GameOver';
+import CommandsPage from './CommandsPage';
+
 // import { clearPage } from '../../utils/render';
 // import CommandsPage from "./CommandsPage";
 // eslint-disable-next-line import/order, import/no-duplicates
 
 
 let game;
-const rulesAndCommands = RulesAndCommands();
+const rulesAndCommands = CommandsPage();
 
 const GamePage = () => {
   const phaserGame = `
-<div id="gamePageDiv">
+<div id="gamePageDiv" >
   <div class="modal fade" id="rulesAndCommandsDiv">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -36,9 +34,47 @@ const GamePage = () => {
   <div id="gameDiv" class="d-flex justify-content-center my-3">
     <button type="button"  id="gamePauseButton" class="" data-bs-toggle="modal" data-bs-target="#pauseModal"> || </button>
     
-    
-        ${PauseMenu}
-        ${GameOver()}
+    <div class="modal fade" id="pauseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" id="pauseMenu">
+
+          <div class="modal-header text-center">
+            <h2 class="modal-title w-100">Pause</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal" id="pauseMenuCloseButton">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div id="menu" class="container mx-auto">
+              <button class="row menuButtons" data-bs-dismiss="modal" id="continueButton">Reprendre</button>
+              <button class="row menuButtons" id="restartButton">Recommencer</button>
+
+              <div id="confToRestartDiv" style="display: none;">
+                <span id="confToRestartTitle"> Etes-vous sûr(e) ?</span>
+                <div class="row justify-content-around">
+                  <button class="col-4 confButtons" data-bs-dismiss="modal" data-uri="/game">Oui</button>
+                  <button class="col-4 confButtons" id="confRestartReturnButton">Retour</button>
+                </div>
+              </div>
+
+              <button class="row menuButtons" type="button" id="commandsButton" data-bs-target="#rulesAndCommandsDiv" data-bs-toggle="modal">Commandes et règles</button>
+                  
+              <button class="row menuButtons" id="exitButton">Quitter le jeu</button>
+
+              <div id="confToExitDiv" style="display: none;">
+                <span id="confToExitTitle"> Etes-vous sûr(e) ?</span>
+                <div class="row justify-content-around">
+                  <button class="col-4 confButtons" data-bs-dismiss="modal" data-uri="/">Oui</button>
+                  <button class="col-4 confButtons" id="confExitReturnButton">Retour</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 `;
 
@@ -47,15 +83,15 @@ const GamePage = () => {
 
   const mainWidth = window.innerWidth;
   const pauseButton = document.getElementById('gamePauseButton');
-  let pauseButtonPosition = ((mainWidth - 800) / 2);
+  let pauseButtonPosition = ((mainWidth - 1200) / 2);
   if (pauseButtonPosition < 0) pauseButtonPosition = 0;
   pauseButton.style.right = `${pauseButtonPosition + 5}px`;
 
 
   const config = {
     type: Phaser.AUTO,
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 700,
     physics: {
       default: 'arcade',
       arcade: {
@@ -162,6 +198,7 @@ const GamePage = () => {
     check.style.display = 'none'
     label.style.display = 'none'
   });
+
   
   document.addEventListener('keyup', (e) => {
     // eslint-disable-next-line no-underscore-dangle
@@ -169,6 +206,8 @@ const GamePage = () => {
       pauseModal.show();
       game.pause();
     }
+    // eslint-disable-next-line no-underscore-dangle
+    if(e.key === 'Escape' && rulesAndCommandsDiv._isShown === false) pauseModal.toggle();
   })
   if (localStorage.getItem('disableRules') === 'true'){
     game.resume();
