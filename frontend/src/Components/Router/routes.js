@@ -4,8 +4,9 @@ import NewPage from '../Pages/NewPage';
 import LoginPage from '../Pages/LoginPage';
 import LeaderboardPage from '../Pages/LeaderboardPage';
 import RegisterPage from '../Pages/RegisterPage';
-import CommandsPage from '../Modals/CommandsPage';
-import ShopPage from '../Pages/Shop';
+import CommandsPage from '../Pages/CommandsPage';
+import Shoppage from '../Pages/Shop';
+import ProfilePage from '../Pages/ProfilPage';
 
 const routes = {
   '/': HomePage,
@@ -15,7 +16,8 @@ const routes = {
   '/leaderboard': LeaderboardPage,
   '/register': RegisterPage,
   '/commands': CommandsPage,
-  '/shop': ShopPage
+  '/shop': Shoppage,
+  '/profile': ProfilePage,
 };
 
 export default routes;

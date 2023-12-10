@@ -1,7 +1,6 @@
-const clearPage = (isHomePage) => {
+const clearPage = () => {
   const main = document.querySelector('main');
   main.innerHTML = '';
-  if(isHomePage) main.innerHTML = '<div id="menu"></div>'
 };
 
 const renderPageTitle = (title) => {

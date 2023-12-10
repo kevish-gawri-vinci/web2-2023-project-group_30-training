@@ -1,9 +1,9 @@
-const ShopPage = () => {
+const Shoppage = () => {
     const main = document.querySelector('main');
     main.innerHTML = `
         <h1> shop page </h1>
     `;
   };
 
-  export default ShopPage;
+  export default Shoppage;
   
