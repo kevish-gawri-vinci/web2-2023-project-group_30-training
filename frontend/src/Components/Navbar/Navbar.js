@@ -59,8 +59,6 @@ const Navbar = () => {
     if (isLoggedIn()) {
       logoption = `<a class="nav-link text-white fs-4" href="#" data-uri="/">Se déconnecter</a>
                   <a class="nav-link text-white fs-4" href="#" data-uri="/profile">Profil</a>`;
-
-      console.log(isLoggedIn());
     } else {
       logoption = `
         <a class="nav-link text-white fs-4" href="#" data-uri="/login">Se connecter</a>
