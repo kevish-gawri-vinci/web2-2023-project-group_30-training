@@ -1,4 +1,4 @@
-const CommandsPage = () => {
+const RulesAndCommands = () => {
    const  htmlCommands = `
    <div class="modal-body">
       <h2>Commandes du Jeu</h2>
@@ -28,4 +28,4 @@ const CommandsPage = () => {
   return htmlCommands;
   };
 
-  export default CommandsPage;
+  export default RulesAndCommands;
