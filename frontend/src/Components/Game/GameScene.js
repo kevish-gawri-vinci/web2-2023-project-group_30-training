@@ -5,6 +5,8 @@ import asteroidAsset from '../../assets/asteroid.png';
 import dudeAsset from '../../assets/Ship3.png';
 import gameAudio from '../../assets/audio/gamemusic-6082.mp3';
 import gameOverAudio from '../../assets/audio/game-over-arcade-6435.mp3';
+import bulletAsset from '../../assets/bullets.png';
+import starAsset from '../../assets/star.png';
 
 const DUDE_KEY = 'dude';
 
