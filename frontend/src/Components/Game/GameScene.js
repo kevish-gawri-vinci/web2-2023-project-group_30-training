@@ -223,10 +223,18 @@ class GameScene extends Phaser.Scene {
   }
 
   bulletObstacleCollision(bullet, obstacle) {
-    bullet.setActive(false).setVisible(false);
-    obstacle.destroy();
+    // Check if the bullet is still active and visible
+    if (bullet.active && bullet.visible) {
+      const bulletBounds = bullet.getBounds();
+      const obstacleBounds = obstacle.getBounds();
   
-    this.scoreLabel.add(10);
+      // Check if the bullet and obstacle bounds overlap on the y-axis
+      if (Phaser.Geom.Intersects.RectangleToRectangle(bulletBounds, obstacleBounds)) {
+        bullet.setActive(false).setVisible(false);
+        obstacle.destroy();
+        this.scoreLabel.add(10);
+      }
+    }
   }
 
   createScoreLabel(x, y, score) {
