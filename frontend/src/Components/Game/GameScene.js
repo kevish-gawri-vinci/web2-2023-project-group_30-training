@@ -16,8 +16,11 @@ class GameScene extends Phaser.Scene {
     this.player = undefined;
     this.cursors = undefined;
     this.scoreLabel = undefined;
+    this.starLabel = undefined;
+    this.starCount = 0;
     this.timerEvent = undefined;
     this.obstacles = undefined;
+    this.stars = undefined;
     this.obstacleDelay = 100; // Initial delay
     this.obstacleDelayDecreaseRate = 10; // Rate at which delay decreases
     this.minObstacleDelay = 10; // Minimum delay value
@@ -95,7 +98,7 @@ class GameScene extends Phaser.Scene {
     // stars
     this.stars = this.physics.add.group({
       key: STAR_KEY,
-      repeat: 0.5,
+      repeat: 1,
       setXY: () => {
         let randomY = Phaser.Math.Between(15, 705);
         while (this.obstacleAtPosition(800, randomY)) {
@@ -105,6 +108,9 @@ class GameScene extends Phaser.Scene {
       },
       setScale: { x: 1, y: 1 },
     });
+
+    this.starCount = 0;
+    this.starLabel = this.add.text(16, 80, 'Stars: 0', { fontSize: '20px', fill: '#FFFF00' });
 
     this.stars.children.iterate(star => {
       const randomY = Phaser.Math.Between(15, 705);
@@ -246,9 +252,25 @@ class GameScene extends Phaser.Scene {
   }
 
   collectStar(player, star) {
-    star.disableBody(true, true);  // Disable the star and hide it
-    this.scoreLabel.add(50);  // Increase the score when a star is collected
+    star.disableBody(true, true);
+    this.starCount += 10;
+    this.starLabel.setText(`Stars: ${this.starCount}`);
+
+    // Respawn a new star at a random position beyond the right edge of the screen
+    const newStar = this.stars.create(Phaser.Math.Between(800, 1600), Phaser.Math.Between(15, 705), STAR_KEY);
+    newStar.setVelocityX(-200);
+    newStar.setScale(1);
+    newStar.setDepth(1);
+
+    // Adjust the new star's position to avoid overlapping with obstacles
+    let randomY = Phaser.Math.Between(15, 705);
+    while (this.obstacleAtPosition(newStar.x, randomY)) {
+        randomY = Phaser.Math.Between(15, 705);
+    }
+
+    newStar.setPosition(newStar.x, randomY);
   }
+
 
   obstacleAtPosition(x, y) {
     let obstacleAtPosition = false;
