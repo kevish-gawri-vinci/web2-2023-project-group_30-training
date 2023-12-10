@@ -1,5 +1,6 @@
 import { isLoggedIn, setUserSessionData, logoutuser } from '../../utils/auth';
 import Navigate from '../Router/Navigate';
+import { reloadHomePage } from '../Pages/HomePage';
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
@@ -26,7 +27,8 @@ const Navbar = () => {
     setUserSessionData(null);
     logoutuser();
     reloadNavbar();
-    Navigate('/');
+    reloadHomePage();
+    
   }
 
   // Fonction pour recharger dynamiquement la navbar
@@ -34,6 +36,7 @@ const Navbar = () => {
     Navbar();
     attachEventListeners();
   }
+  
 
   // Fonction pour attacher les écouteurs d'événements
   function attachEventListeners() {

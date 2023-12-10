@@ -57,6 +57,11 @@ document.getElementById('shopBtn')?.addEventListener('click', () => {Navigate('/
   animatedTitle.play();
 };
 
+const reloadHomePage = () => {
+  HomePage();
+};
+
+export { reloadHomePage };
 
 
 export default HomePage;
