@@ -165,9 +165,10 @@ const GamePage = () => {
   
   document.addEventListener('keyup', (e) => {
     // eslint-disable-next-line no-underscore-dangle
-    if(e.key === 'Escape' && rulesAndCommandsDiv._isShown === false) {
+    if(e.key === 'Escape' && rulesAndCommandsDiv._isShown === false && document.URL.endsWith('/game')) {
       pauseModal.show();
       game.pause();
+      console.log();
     }
   })
   if (localStorage.getItem('disableRules') === 'true'){
