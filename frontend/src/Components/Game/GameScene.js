@@ -3,8 +3,10 @@ import ScoreLabel from './ScoreLabel';
 import skyAsset from '../../assets/sky_test.png';
 import asteroidAsset from '../../assets/asteroid.png';
 import dudeAsset from '../../assets/Ship1.png';
+import bulletAsset from '../../assets/bullets.png';
 
 const DUDE_KEY = 'dude';
+const BULLET_KEY = 'bullet';
 
 class GameScene extends Phaser.Scene {
   constructor() {
@@ -24,6 +26,7 @@ class GameScene extends Phaser.Scene {
     this.load.image('sky', skyAsset);
     this.load.image('obstacle', asteroidAsset);
     this.load.image(DUDE_KEY, dudeAsset);
+    this.load.image(BULLET_KEY, bulletAsset);
   }
 
   create() {
@@ -49,6 +52,7 @@ class GameScene extends Phaser.Scene {
           const randomY = Phaser.Math.Between(15, 705);
           obstacle.setPosition(obstacle.x, randomY);
       }
+      
     });
 
     this.physics.add.collider(this.player, this.obstacles, this.playerObstacleCollision, null, this);
@@ -63,6 +67,27 @@ class GameScene extends Phaser.Scene {
       callbackScope: this,
       loop: true
     })
+
+    // bullets
+    this.bullets = this.physics.add.group({
+      key: BULLET_KEY,
+      repeat: 9,
+      setXY: { x: -10, y: -10 },
+      active: false,
+      visible: false,
+    });
+
+    this.bullets.children.iterate(bullet => {
+      bullet.setActive(false).setVisible(false);
+    });
+
+    this.bulletReadyText = this.add.text(16, 50, 'Bullet Ready', { fontSize: '20px', fill: '#00FF00' });
+
+    this.lastFiredTime = 0;  // Time when the last bullet was fired
+    this.fireDelay = 1000;    // Delay between consecutive shots in milliseconds
+
+    this.physics.add.collider(this.bullets, this.obstacles, this.bulletObstacleCollision, null, this);
+    this.physics.world.setBoundsCollision(true, true, false, false);
   }
 
   playerObstacleCollision() {
@@ -89,6 +114,23 @@ class GameScene extends Phaser.Scene {
     } else {
       this.player.setVelocityY(0);
     }
+
+    if (this.cursors.space.isDown) {
+      this.tryShootBullet();
+    }
+
+    // Update bullet ready text
+    const currentTime = this.time.now;
+    const timeSinceLastShot = currentTime - this.lastFiredTime;
+    
+    if (timeSinceLastShot > this.fireDelay) {
+      this.bulletReadyText.setText('Bullet Ready');
+      this.bulletReadyText.setFill('#00FF00');  // Green color
+    } else {
+      const timeRemaining = (this.fireDelay - timeSinceLastShot) / 1000;
+      this.bulletReadyText.setText(`Bullet Cooldown: ${timeRemaining.toFixed(1)}s`);
+      this.bulletReadyText.setFill('#FF0000');  // Red color
+    }
   }
 
   moveObstacles(){
@@ -112,6 +154,45 @@ class GameScene extends Phaser.Scene {
     // Update timerEvent.delay
     this.timerEvent.delay = this.obstacleDelay;
 
+  }
+
+  tryShootBullet() {
+    const currentTime = this.time.now;
+
+    // Check if enough time has passed since the last shot
+    if (currentTime - this.lastFiredTime > this.fireDelay) {
+      this.shootBullet();
+      this.lastFiredTime = currentTime;
+    }
+  }
+
+  shootBullet() {
+    const bullet = this.bullets.get(this.player.x + 50, this.player.y);
+  
+    if (bullet) {
+      // Reset bullet properties
+      bullet.setActive(true).setVisible(true).setVelocityX(500).setPosition(this.player.x + 50, this.player.y);
+  
+      // Handle bullet count
+      this.checkBulletCount();
+    }
+  }
+
+  checkBulletCount() {
+    // Get the number of active bullets
+    const activeBullets = this.bullets.countActive(true);
+
+    // If the limit is reached, disable shooting
+    if (activeBullets >= 10) {
+      this.cursors.space.reset();
+    }
+  }
+
+  bulletObstacleCollision(bullet, obstacle) {
+    bullet.setActive(false).setVisible(false);
+    obstacle.destroy();
+  
+    this.scoreLabel.add(10);
   }
 
   createScoreLabel(x, y, score) {
