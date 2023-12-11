@@ -1,3 +1,4 @@
+
 import { getUserSessionData } from '../../utils/auth';
 
 const { username, email, birthdate } = getUserSessionData();
