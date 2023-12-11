@@ -149,6 +149,22 @@ class GameScene extends Phaser.Scene {
     this.player.setTint(0xff0000);
     this.gameOverFlag = true;
 
+    
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    gameOverScreen.style.display = "grid";
+    const pointsDisplay = document.getElementById('pointsDisplay');
+    pointsDisplay.innerHTML = `${this.scoreLabel.score}`;
+    gameOverScreen.style.opacity = "1";
+    const starsDisplay = document.getElementById('starsDisplay');
+    starsDisplay.innerHTML = `50  <img src=${starAsset}>`;
+    const animatedText = anime({
+      targets: '.gameOverText',
+      translateY: 25,
+      easing: 'easeInOutExpo',
+      delay: 250
+    });
+    animatedText.play();
+
     const userObject = localStorage.getItem('user');
 
   if (!userObject) {
@@ -183,20 +199,6 @@ class GameScene extends Phaser.Scene {
   } catch (error) {
     console.error('Erreur réseau:', error);
   }
-    const gameOverScreen = document.getElementById('gameOverScreen');
-    gameOverScreen.style.display = "grid";
-    const pointsDisplay = document.getElementById('pointsDisplay');
-    pointsDisplay.innerHTML = `${this.scoreLabel.score}`;
-    gameOverScreen.style.opacity = "1";
-    const starsDisplay = document.getElementById('starsDisplay');
-    starsDisplay.innerHTML = `50  <img src=${starAsset}>`;
-    const animatedText = anime({
-      targets: '.gameOverText',
-      translateY: 25,
-      easing: 'easeInOutExpo',
-      delay: 250
-    });
-    animatedText.play();
   }
 
   update() {

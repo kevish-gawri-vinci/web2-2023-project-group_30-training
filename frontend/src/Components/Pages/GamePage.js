@@ -5,6 +5,7 @@ import GameScene from '../Game/GameScene';
 import CommandsPage from './CommandsPage';
 import PauseMenu from '../Modals/PauseMenu';
 import GameOver from '../Modals/GameOver';
+import Navigate from '../Router/Navigate';
 
 // import { clearPage } from '../../utils/render';
 // import CommandsPage from "./CommandsPage";
@@ -168,6 +169,14 @@ const GamePage = () => {
     label.style.display = 'none'
   });
 
+  // Game over
+  document.getElementById('gameOverRestart')?.addEventListener('click', () => {
+    Navigate('/game');
+})
+
+document.getElementById('gameOverExit')?.addEventListener('click', () => {
+  Navigate('/');
+})
   
   document.addEventListener('keyup', (e) => {
     // eslint-disable-next-line no-underscore-dangle
@@ -178,7 +187,7 @@ const GamePage = () => {
   } else {
     rulesAndCommandsDiv.show();
   }
-  
+  document.querySelector('*').style.overflowY = "scroll";
 };
 
 export default GamePage;

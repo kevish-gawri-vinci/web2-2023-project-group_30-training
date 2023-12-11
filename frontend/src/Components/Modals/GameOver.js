@@ -7,6 +7,8 @@ const GameOver = `
         <span id="pointsDisplay" class="gameOverText"></span>
     <h5 id="gameover-stars" class="gameOverText">Etoiles gagnées :</h5>
         <span id="starsDisplay" class="gameOverText"></span>
+    <button id="gameOverRestart" data-uri="/game">Recommencer</button>
+    <button id="gameOverExit">Quitter</button>
 </div>
 `
 

@@ -39,7 +39,7 @@
     width: max-content;
 }
 
-.menuButtons{
+.menuButtons, #gameOverRestart, #gameOverExit {
     height: 50px;
     margin: 7px;
     width: 220px;
@@ -235,4 +235,8 @@
 #pointsDisplay, #starsDisplay {
     justify-self: center;
     grid-column: 2 / 2;
+}
+
+#gameOverRestart, #gameOverExit{
+    justify-self: center;
 }
