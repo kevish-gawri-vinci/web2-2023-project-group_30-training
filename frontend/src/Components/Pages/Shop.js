@@ -42,6 +42,15 @@ const ShopPage = () => {
               </div>    
             </div>
           </div>
+          <div class="carousel-item h-100" id="3">
+              <div class="h-100 shopItemContainer w-100 justify-content-center">
+                  <img src="${skin3}" class="d-block shopItemImg" alt="...">
+                  <div class="shopItemDesc">
+                  <h2 class="shopItemTitle">Prix : 1800 <img src="${star}"></h2>
+                  </div>
+              </div>    
+            </div>
+          </div>
           <button class="carousel-control-prev shopInteractionBtn" type="button" data-bs-target="#carouselShopItems" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
