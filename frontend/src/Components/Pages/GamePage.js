@@ -3,6 +3,8 @@ import Phaser from 'phaser';
 import {Modal} from 'bootstrap'
 import GameScene from '../Game/GameScene';
 import CommandsPage from './CommandsPage';
+import PauseMenu from '../Modals/PauseMenu';
+import GameOver from '../Modals/GameOver';
 
 // import { clearPage } from '../../utils/render';
 // import CommandsPage from "./CommandsPage";
@@ -34,46 +36,8 @@ const GamePage = () => {
   <div id="gameDiv" class="d-flex justify-content-center my-3">
     <button type="button"  id="gamePauseButton" class="" data-bs-toggle="modal" data-bs-target="#pauseModal"> || </button>
     
-    <div class="modal fade" id="pauseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" id="pauseMenu">
-
-          <div class="modal-header text-center">
-            <h2 class="modal-title w-100">Pause</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-bs-dismiss="modal" id="pauseMenuCloseButton">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <div id="menu" class="container mx-auto">
-              <button class="row menuButtons" data-bs-dismiss="modal" id="continueButton">Reprendre</button>
-              <button class="row menuButtons" id="restartButton">Recommencer</button>
-
-              <div id="confToRestartDiv" style="display: none;">
-                <span id="confToRestartTitle"> Etes-vous sûr(e) ?</span>
-                <div class="row justify-content-around">
-                  <button class="col-4 confButtons" data-bs-dismiss="modal" data-uri="/game">Oui</button>
-                  <button class="col-4 confButtons" id="confRestartReturnButton">Retour</button>
-                </div>
-              </div>
-
-              <button class="row menuButtons" type="button" id="commandsButton" data-bs-target="#rulesAndCommandsDiv" data-bs-toggle="modal">Commandes et règles</button>
-                  
-              <button class="row menuButtons" id="exitButton">Quitter le jeu</button>
-
-              <div id="confToExitDiv" style="display: none;">
-                <span id="confToExitTitle"> Etes-vous sûr(e) ?</span>
-                <div class="row justify-content-around">
-                  <button class="col-4 confButtons" data-bs-dismiss="modal" data-uri="/">Oui</button>
-                  <button class="col-4 confButtons" id="confExitReturnButton">Retour</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    ${PauseMenu}
+    ${GameOver}
   </div>
 </div>
 `;
@@ -115,6 +79,11 @@ const GamePage = () => {
     game.resume();
   })
 
+  function pauseGame(){
+    game.pause();
+    console.log(game);
+    game.sound.context.suspend();
+  }
   
 
   // Onclick of the restart button
@@ -162,7 +131,7 @@ const GamePage = () => {
   // Pause the game upon click of pause button
 
   pauseButton.addEventListener('click', () => {
-    game.pause();
+    pauseGame();
   })
 
   // Resume, upon click of reprendre, and closing of modal
