@@ -25,7 +25,7 @@ const LeaderboardPage = async () => {
               <thead>
                 <tr>
                   <th class="bg-transparent text-white" scope="col" style="font-size:30px">Joueur</th>
-                  <th class="bg-transparent text-white" scope="col" style="font-size:30px">Points</th>
+                  <th class="bg-transparent text-white" scope="col" style="font-size:30px">Score</th>
                 </tr>
               </thead>
               <tbody>
