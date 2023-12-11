@@ -15,6 +15,8 @@ const defaultUsers = [
     id: 1,
     username: 'admin',
     password: bcrypt.hashSync('admin', saltRounds),
+    birthdate: '1990-01-01',
+    score: 0,
   },
 ];
 
@@ -39,11 +41,11 @@ async function login(username, password) {
   return authenticatedUser;
 }
 
-async function register(username, password) {
+async function register(username, password, birthdate) {
   const userFound = readOneUserFromUsername(username);
   if (userFound) return undefined;
 
-  await createOneUser(username, password);
+  await createOneUser(username, password, birthdate);
 
   const token = jwt.sign(
     { username }, // session data added to the payload (payload : part 2 of a JWT)
@@ -67,7 +69,7 @@ function readOneUserFromUsername(username) {
   return users[indexOfUserFound];
 }
 
-async function createOneUser(username, password) {
+async function createOneUser(username, password, birthdate) {
   const users = parse(jsonDbPath, defaultUsers);
 
   const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -76,6 +78,8 @@ async function createOneUser(username, password) {
     id: getNextId(),
     username,
     password: hashedPassword,
+    birthdate,
+    score: 0,
   };
 
   users.push(createdUser);
@@ -94,8 +98,24 @@ function getNextId() {
   return nextId;
 }
 
+async function updateUserData(updatedUser) {
+  const users = parse(jsonDbPath, defaultUsers);
+  const userIndex = users.findIndex((user) => user.id === updatedUser.id);
+  if (userIndex !== -1) {
+    users[userIndex] = updatedUser;
+    serialize(jsonDbPath, users);
+  }
+}
+function readAllUsers() {
+  const users = parse(jsonDbPath, defaultUsers);
+  return users;
+}
 module.exports = {
   login,
   register,
   readOneUserFromUsername,
+  updateUserData,
+  jsonDbPath,
+  defaultUsers,
+  readAllUsers,
 };
