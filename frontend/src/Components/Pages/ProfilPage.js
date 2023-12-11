@@ -1,32 +1,41 @@
-const ProfilePage = () => {
+const ProfilePage = async () => {
   const main = document.querySelector('main');
 
-  // Profile data
-  const name = 'John Doe';
-  const email = 'johndoe@example.com';
-  const birthdate = '01/01/2021';
-  const age = calculateAge(birthdate);
+  // Récupérer les données de l'utilisateur depuis l'API
+  try {
+    const response = await fetch('api/profil/:username'); // Remplacez par l'URL de votre API
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const userData = await response.json();
 
-  // Creating HTML structure for the profile
-  const profileHTML = `
-    <div class="container">
-     <div class="row justify-content-center">
-         <div class="profile">
-             <h1 class=text-center>Profile</h1>
-             <h2 class=text-center>${name}</h2>
-             <h3 class=text-center>Age: ${age}</h3>
-             <h3 class=text-center>Email: ${email}</h3>
-             <h3 class="text-center">date de naissance: ${birthdate}</3>
-         </div>
-     </div>
-    </div>
+    // Données du profil
+    const { username, birthdate, score } = userData;
+    const age = calculateAge(birthdate);
+
+    // Création de la structure HTML pour le profil
+    const profileHTML = `
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="profile">
+            <h1 class="text-center">Profile</h1>
+            <h2 class="text-center">Username: ${username}</h2>
+            <h3 class="text-center">Age: ${age}</h3>
+            <h3 class="text-center">Date de naissance: ${birthdate}</h3>
+            <h3 class="text-center">Score: ${score}</h3>
+          </div>
+        </div>
+      </div>
     `;
 
-  // Setting the HTML content to the main element
-  main.innerHTML = profileHTML;
+    // Définir le contenu HTML de l'élément principal
+    main.innerHTML = profileHTML;
+  } catch (error) {
+    console.error('Erreur lors de la récupération des données de l’utilisateur:', error);
+  }
 };
+
 function calculateAge(birthDate) {
-  // Split the date string into day, month, and year components
   const parts = birthDate.split('/');
   const day = parseInt(parts[0], 10);
   const month = parseInt(parts[1], 10) - 1;

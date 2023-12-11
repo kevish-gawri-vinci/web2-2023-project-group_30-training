@@ -9,22 +9,24 @@ const { authorize } = require('../utils/auths');
 const { parse } = require('../utils/json');
 
 const router = express.Router();
-const users = [
-  { name: 'Player1', points: 100 },
-  { name: 'Player2', points: 95 },
-  { name: 'Player3', points: 90 },
-  { name: 'Player4', points: 85 },
-  { name: 'Player5', points: 80 },
-  { name: 'Player6', points: 75 },
-  { name: 'Player7', points: 70 },
-  { name: 'Player8', points: 65 },
-  { name: 'Player9', points: 60 },
-  { name: 'Player10', points: 55 },
-];
 
 /* GET users listing. */
-router.get('/', (req, res) => {
-  res.json(users);
+
+// Nouvelle route pour obtenir les données de profil d'un utilisateur
+router.get('/profil/:username', (req, res) => {
+  const { username } = req.params;
+  const user = readOneUserFromUsername(username);
+
+  if (!user) {
+    return res.status(404).json({ message: 'Utilisateur non trouvé' });
+  }
+
+  // Renvoie les informations nécessaires pour la page de profil
+  res.json({
+    username: user.username,
+    birthdate: user.birthdate,
+    score: user.score,
+  });
 });
 
 // eslint-disable-next-line consistent-return
